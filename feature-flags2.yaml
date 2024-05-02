@@ -235,6 +235,6 @@ featureFlags:
         targetRules:
         - targets:
           - identifier: employee_dev
-          variation: key3
+          variation: key2
   projectIdentifier: default_project
   orgIdentifier: default
