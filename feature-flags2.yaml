@@ -85,7 +85,7 @@ featureFlags:
         default:
           onVariation: "true"
           offVariation: "false"
-        state: "on"
+        state: "off"
   - flag:
       name: employee_display_api
       identifier: employee_display_api
