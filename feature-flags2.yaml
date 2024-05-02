@@ -231,6 +231,6 @@ featureFlags:
         default:
           onVariation: key1
           offVariation: key2
-        state: "off"
+        state: "on"
   projectIdentifier: default_project
   orgIdentifier: default
