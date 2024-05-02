@@ -232,5 +232,9 @@ featureFlags:
           onVariation: key1
           offVariation: key2
         state: "on"
+        targetRules:
+        - targets:
+          - identifier: employee_dev
+          variation: key3
   projectIdentifier: default_project
   orgIdentifier: default
