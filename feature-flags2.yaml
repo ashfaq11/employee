@@ -61,6 +61,32 @@ featureFlags:
           offVariation: "false"
         state: "on"
   - flag:
+      name: created_flag_at_yaml
+      identifier: created_flag_at_yaml
+      description: created_flag_at_yaml
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: qa
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+  - flag:
       name: employee_display_api
       identifier: employee_display_api
       description: enable/disable employee display api
