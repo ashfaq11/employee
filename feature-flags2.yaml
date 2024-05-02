@@ -170,5 +170,39 @@ featureFlags:
         - targets:
           - identifier: employee_dev
           variation: "true"
+  - flag:
+      name: testFlag02
+      identifier: testFlag02
+      description: enable/disble testFlag02
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: qa
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: javasdk_qa
+          variation: "true"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: employee_dev
+          variation: "true"
   projectIdentifier: default_project
   orgIdentifier: default
