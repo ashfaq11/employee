@@ -204,5 +204,33 @@ featureFlags:
         - targets:
           - identifier: employee_dev
           variation: "true"
+  - flag:
+      name: test-variation
+      identifier: testvariation
+      description: test variation flag
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: key1
+          offVariation: key2
+        variations:
+        - identifier: key1
+          value: value1
+        - identifier: key2
+          value: value2
+        - identifier: key3
+          value: value3
+      environments:
+      - identifier: qa
+        default:
+          onVariation: key1
+          offVariation: key2
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: key1
+          offVariation: key2
+        state: "off"
   projectIdentifier: default_project
   orgIdentifier: default
