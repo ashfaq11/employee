@@ -33,7 +33,7 @@ featureFlags:
         targetRules:
         - targets:
           - identifier: employee_dev
-          variation: "true"
+          variation: "false"
   - flag:
       name: employee_display_api
       identifier: employee_display_api
