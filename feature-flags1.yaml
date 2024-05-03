@@ -1,0 +1,209 @@
+featureFlags:
+  flags:
+    - flag:
+      name: testflag
+      identifier: testflag
+      description: enable to display testflag
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: qa
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: javasdk_qa
+          variation: "false"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: employee_dev
+          variation: "false"
+
+  - flag:
+      name: allDepartment
+      identifier: allDepartment
+      description: enable to display all employees
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: qa
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: javasdk_qa
+          variation: "false"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: employee_dev
+          variation: "false"
+  - flag:
+      name: employee_display_api
+      identifier: employee_display_api
+      description: enable/disable employee display api
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: qa
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: javasdk_qa
+          variation: "true"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: employee_dev
+          variation: "true"
+  - flag:
+      name: hrDepartment
+      identifier: hrDepartment
+      description: enable/disable hr employee records
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: qa
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: javasdk_qa
+          variation: "false"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: employee_dev
+          variation: "true"
+  - flag:
+      name: itDepartment
+      identifier: itDepartment
+      description: enable/disable IT employee records
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: qa
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: javasdk_qa
+          variation: "true"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: employee_dev
+          variation: "false"
+  - flag:
+      name: salesDepartment
+      identifier: salesDepartment
+      description: enable/disble sales dept employee
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: qa
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: javasdk_qa
+          variation: "true"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: employee_dev
+          variation: "true"
+  projectIdentifier: default_project
+  orgIdentifier: default
