@@ -26,5 +26,11 @@ public class FeatureFlagConstants {
 	public static final String LOCATION_VALUE = "us";
 
 	public static final String API_DISABLED_MESSAGE = "API IS DISABLED";
+	public static final String ACCOUNT_IDENTIFIER = "b-BNO3rXTjWRK9JsIxgnTQ";
+	public static final String ORG_IDENTIFIER = "default";
+	public static final String PROJECT_IDENTIFIER = "default_project";
+	public static final String ENVIRONMENT_IDENTIFIER = "dev";
+	public static final String DEV_X_API_KEY = "pat.b-BNO3rXTjWRK9JsIxgnTQ.663339960315c638850f6b20.PVJV0Sozuly6YMO3VCWU";
+
 
 }

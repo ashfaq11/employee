@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.trinet.harness.utils.FeatureFlagConstants;
+import com.trinet.harness.utils.HarnessUtils;
 
 import io.harness.cf.client.api.BaseConfig;
 import io.harness.cf.client.api.CfClient;
@@ -22,6 +23,7 @@ public class CfClientConfiguration {
 
 	private String apiKey = FeatureFlagConstants.API_KEY;
 	CfClient cfClient;
+	
 
 	@Bean
 	CfClient cfClient() throws FeatureFlagInitializeException, InterruptedException {
@@ -38,6 +40,10 @@ public class CfClientConfiguration {
 		cfClient.waitForInitialization();
 		cfClient.on(Event.READY, result -> logger.info("Harness client initialized."));
 		cfClient.on(Event.CHANGED, result -> this.getSSevents(result));
+		
+		// fetch all feature flag values
+		String featureFlagJson = HarnessUtils.getFeatureFlagValues();
+		logger.info("featureFlagJson :{}" ,featureFlagJson);
 		return cfClient;
 	}
 
