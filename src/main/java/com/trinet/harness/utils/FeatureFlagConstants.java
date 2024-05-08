@@ -4,7 +4,7 @@ public class FeatureFlagConstants {
 
 	private FeatureFlagConstants() {}
 	
-	public static final String EMPLOYEE_DISPLAY_API_FLAG = "employee_display_api";
+	public static final String EMPLOYEE_DISPLAY_API = "employee_display_api";
 	public static final String ALL_DEPARTMENT_FLAG = "allDepartment";
 	public static final String HR_DEPARTMENT_FLAG = "hrDepartment";
 	public static final String IT_DEPARTMENT_FLAG = "itDepartment";

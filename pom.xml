@@ -51,9 +51,6 @@
         <artifactId>httpclient</artifactId>
         <version>4.5.13</version> <!-- Replace with the latest version -->
     </dependency>
-    
-     
-
 	</dependencies>
 
 	<build>

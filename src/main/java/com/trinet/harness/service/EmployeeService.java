@@ -1,5 +1,6 @@
 package com.trinet.harness.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.trinet.harness.domain.Employee;
+import com.trinet.harness.domain.FeatureFlagDto;
 import com.trinet.harness.utils.EmployeeUtils;
 import com.trinet.harness.utils.FeatureFlagConstants;
 import com.trinet.harness.utils.HarnessProvider;
@@ -27,7 +29,7 @@ public class EmployeeService {
 	public List<Employee> getEmployees() {
 		Set<String> deptFilters = new HashSet<>();
 		try {
-			boolean isEmployeeAPIisEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.EMPLOYEE_DISPLAY_API_FLAG);
+			boolean isEmployeeAPIisEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.EMPLOYEE_DISPLAY_API);
 			logger.info("isEmployeeAPIisEnabled: {}", isEmployeeAPIisEnabled);
 
 			if (!isEmployeeAPIisEnabled) {
@@ -36,11 +38,6 @@ public class EmployeeService {
 			}
 
 			boolean isAllDeptEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.ALL_DEPARTMENT_FLAG);
-			
-			if (isAllDeptEnabled) {
-				return EmployeeUtils.employeeList;
-			}
-			
 			boolean isItDepartmentEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.IT_DEPARTMENT_FLAG);
 			boolean isHrDepartment = harnessProvider.getFlagValues(FeatureFlagConstants.HR_DEPARTMENT_FLAG);
 			boolean isSalesDepartmentEnabled = harnessProvider
@@ -50,6 +47,9 @@ public class EmployeeService {
 					"isAllDeptEnabled: {}, isItDepartmentEnabled: {}, isHrDepartment: {}, isSalesDepartmentEnabled: {}",
 					isAllDeptEnabled, isItDepartmentEnabled, isHrDepartment, isSalesDepartmentEnabled);
 
+			if (isAllDeptEnabled) {
+				return EmployeeUtils.employeeList;
+			}
 
 			if (isItDepartmentEnabled) {
 				deptFilters.add(FeatureFlagConstants.IT_DEPARTMENT);
@@ -80,5 +80,23 @@ public class EmployeeService {
 
 	}
 
+	public List<FeatureFlagDto> getFeatureFlags() {
+		boolean isEmployeeAPIisEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.EMPLOYEE_DISPLAY_API);
+		boolean isAllDeptEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.ALL_DEPARTMENT_FLAG);
+		boolean isItDepartmentEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.IT_DEPARTMENT_FLAG);
+		boolean isHrDepartment = harnessProvider.getFlagValues(FeatureFlagConstants.HR_DEPARTMENT_FLAG);
+		boolean isSalesDepartmentEnabled = harnessProvider
+				.getFlagValues(FeatureFlagConstants.SALES_DEPARTMENT_FLAG);
+		
+		
+		List<FeatureFlagDto> featureFlaglist = new ArrayList<>();
+		
+		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.EMPLOYEE_DISPLAY_API,isEmployeeAPIisEnabled));
+		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.ALL_DEPARTMENT_FLAG,isAllDeptEnabled));
+		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.IT_DEPARTMENT_FLAG,isItDepartmentEnabled));
+		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.HR_DEPARTMENT_FLAG,isHrDepartment));
+		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.SALES_DEPARTMENT_FLAG,isSalesDepartmentEnabled));
 
+		return featureFlaglist;
+	}
 }

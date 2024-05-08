@@ -10,12 +10,11 @@ COPY src ./src
 
 RUN mvn package -DskipTests
 
-FROM adoptopenjdk/openjdk17:jdk-17.0.2_8-alpine
+FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
 COPY --from=build /app/target/*.jar app.jar
 
-EXPOSE 9091
 
 CMD ["java", "-jar", "app.jar"]
