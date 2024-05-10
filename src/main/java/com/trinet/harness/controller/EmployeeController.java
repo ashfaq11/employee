@@ -1,9 +1,19 @@
 package com.trinet.harness.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.trinet.harness.domain.FFRedisDto;
+import com.trinet.harness.repo.CacheDataRepo;
+import com.trinet.harness.service.FeatureFlagsService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,18 +24,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trinet.harness.domain.Employee;
-import com.trinet.harness.domain.FeatureFlagDto;
 import com.trinet.harness.service.EmployeeService;
 
 @RestController
 public class EmployeeController {
 
 	Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+	
+	@Autowired
 	EmployeeService employeeService;
-
-	EmployeeController(EmployeeService employeeService) {
-		this.employeeService = employeeService;
-	}
 
 	@GetMapping("/employees")
 	public ResponseEntity<List<Employee>> employees() {
@@ -54,19 +61,6 @@ public class EmployeeController {
 		return ResponseEntity.ok("deleted successfully");
 	}
 
-	/* returns feature flag key values */
-
-	@GetMapping("/featureflags")
-	public ResponseEntity<List<FeatureFlagDto>> featureFlag() {
-
-		List<FeatureFlagDto> featureflagList = employeeService.getFeatureFlags();
-		if (featureflagList == null || featureflagList.isEmpty()) {
-			return ResponseEntity.noContent().build();
-		}
-
-		return ResponseEntity.ok(featureflagList);
-	}
-
 	@GetMapping("/employees/workflow")
 	public ResponseEntity<String> addEmployee(@RequestParam("status") String status) {
 		logger.info("GitHub Actions workflow response status " + status);
@@ -77,5 +71,6 @@ public class EmployeeController {
 
 		return ResponseEntity.ok("Triggered");
 	}
+
 
 }

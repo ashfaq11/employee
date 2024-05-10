@@ -80,23 +80,5 @@ public class EmployeeService {
 
 	}
 
-	public List<FeatureFlagDto> getFeatureFlags() {
-		boolean isEmployeeAPIisEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.EMPLOYEE_DISPLAY_API);
-		boolean isAllDeptEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.ALL_DEPARTMENT_FLAG);
-		boolean isItDepartmentEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.IT_DEPARTMENT_FLAG);
-		boolean isHrDepartment = harnessProvider.getFlagValues(FeatureFlagConstants.HR_DEPARTMENT_FLAG);
-		boolean isSalesDepartmentEnabled = harnessProvider
-				.getFlagValues(FeatureFlagConstants.SALES_DEPARTMENT_FLAG);
-		
-		
-		List<FeatureFlagDto> featureFlaglist = new ArrayList<>();
-		
-		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.EMPLOYEE_DISPLAY_API,isEmployeeAPIisEnabled));
-		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.ALL_DEPARTMENT_FLAG,isAllDeptEnabled));
-		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.IT_DEPARTMENT_FLAG,isItDepartmentEnabled));
-		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.HR_DEPARTMENT_FLAG,isHrDepartment));
-		featureFlaglist.add(new FeatureFlagDto(FeatureFlagConstants.SALES_DEPARTMENT_FLAG,isSalesDepartmentEnabled));
 
-		return featureFlaglist;
-	}
 }

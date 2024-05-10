@@ -1,0 +1,38 @@
+package com.trinet.harness.controller;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.trinet.harness.domain.FFRedisDto;
+import com.trinet.harness.service.FeatureFlagsService;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/feature_flag")
+public class FeatureFlagController {
+    Logger logger = LoggerFactory.getLogger(FeatureFlagController.class);
+    
+    @Autowired
+    FeatureFlagsService featureFlagsService;
+
+    @GetMapping("/fetchAll")
+    public ResponseEntity<List<FFRedisDto>> featureFlag() throws JsonProcessingException {
+
+        return ResponseEntity.ok(featureFlagsService.getAllFlags());
+    }
+
+    @GetMapping("/findById")
+    public ResponseEntity<FFRedisDto> findById(@RequestParam String flagName) throws JsonProcessingException {
+        return ResponseEntity.ok(featureFlagsService.getFlagById(flagName));
+    }
+
+
+}

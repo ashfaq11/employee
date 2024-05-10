@@ -1,13 +1,17 @@
 package com.trinet.harness.domain;
 
-public class FeatureFlagDto {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
-	String key;
-	Boolean value;
-	
-	
-	public FeatureFlagDto(String key, Boolean value) {
-		super();
+
+@RedisHash(value ="FeatureFlags")
+public class FeatureFlagDto {
+	@Id
+	private String key;
+	@Indexed
+	private String value;
+	public FeatureFlagDto(String key, String value) {
 		this.key = key;
 		this.value = value;
 	}
@@ -17,13 +21,10 @@ public class FeatureFlagDto {
 	public void setKey(String key) {
 		this.key = key;
 	}
-	public Boolean getValue() {
+	public String getValue() {
 		return value;
 	}
-	public void setValue(Boolean value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
-	
-	
-	
 }
