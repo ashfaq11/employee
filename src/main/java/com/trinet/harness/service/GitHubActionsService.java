@@ -6,9 +6,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,36 +23,37 @@ public class GitHubActionsService {
 	String workflowUrl;
 
 	@Value("${github.actions.token}")
-	String token;
+	String accessToken;
 
 	public void triggerGitHubActionWorkflow() {
-		log.info("triggerGitHubActionWorkflow() -- Start");
+			log.info("triggerGitHubActionWorkflow() -- Start");
 
-		RestTemplate restTemplate = new RestTemplate();
-//		String workflowUrl = "https://api.github.com/repos/Sridharraoe/employee-harness/dispatches";
+		    String repositoryOwner = "ashfaq11";
+	        String repositoryName = "employee";
+	        String workflowName = "trigger-github-actions";
+	        
+	        String url = "https://api.github.com/repos/ashfaq11/employee/dispatches";
 
-		String requestJson = "{\"event_type\":\"trigger-github-actions\"}";
+	        log.info(url);
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setContentType(MediaType.APPLICATION_JSON);
+	        headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+	        headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
+	        headers.set(HttpHeaders.USER_AGENT, "Java HTTP Client");
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.set("Accept", "application/vnd.github+json");
-		headers.set("User-Agent", "BE application");
-//		log.info("token "+token);
-		headers.set("Authorization", "Bearer "+token);
-		headers.set("X-GitHub-Api-Version", "2022-11-28");
+	        String jsonBody = "{\"event_type\": \"" + workflowName + "\"}";
 
-		HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
-		ResponseEntity<String> response = null;
-		log.info("Calling the dispatcher event ");
-		try{
-			response = restTemplate.postForEntity(workflowUrl, entity, String.class);
-		}catch(Exception e){
-			log.info("Exception occured "+ e);
-		}
-		log.info("completed calling the dispatcher event ");
-		HttpStatusCode status = response.getStatusCode();
-		log.info("Response Status " + status);
-		log.info("triggerGitHubActionWorkflow() -- End");
+	        HttpEntity<String> requestEntity = new HttpEntity<>(jsonBody, headers);
+
+	        RestTemplate restTemplate = new RestTemplate();
+
+	        try {
+	            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+	            log.info("Response status code: " + response.getStatusCode());
+	        } catch (Exception e) {
+	        	log.info("Error: " + e.getMessage());
+	        }
+	        log.info("triggerGitHubActionWorkflow() -- End");
 	}
 
 }
