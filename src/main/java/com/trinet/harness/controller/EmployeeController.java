@@ -88,5 +88,10 @@ public class EmployeeController {
 	}
 	
 		
+	@PostMapping("/employees/webhook")
+	public ResponseEntity<String> githubWebhook(@RequestBody String data) {
+		logger.info("webhook received data : {}", data);
+		return ResponseEntity.ok("Triggered");
+	}
 
 }
