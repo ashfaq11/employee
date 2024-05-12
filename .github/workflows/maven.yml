@@ -35,7 +35,7 @@ jobs:
     - name: test success
       if: ${{ success() }}
       run: |
-        echo "Test cases are executed successfully"
+        curl -X GET https://employee-production-81b8.up.railway.app/employees/workflow?status=success
 
     - name: test failure
       if: ${{ failure() }}
