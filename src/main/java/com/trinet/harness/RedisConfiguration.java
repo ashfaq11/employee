@@ -11,17 +11,17 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 @Configuration
 @EnableRedisRepositories(value = "com/trinet/harness/repo")
 public class RedisConfiguration {
-    @Bean
+	@Bean
     public LettuceConnectionFactory redisConnectionFactory() {
         RedisProperties properties = redisProperties();
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
-
+ 
         configuration.setHostName(properties.getHost());
         configuration.setPort(properties.getPort());
         configuration.setDatabase(properties.getDatabase());
         configuration.setPassword(properties.getPassword());
         configuration.setUsername(properties.getUsername());
-
+ 
         return new LettuceConnectionFactory(configuration);
     }
 

@@ -1,6 +1,5 @@
 package com.trinet.harness.service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.trinet.harness.domain.Employee;
-import com.trinet.harness.domain.FeatureFlagDto;
 import com.trinet.harness.utils.EmployeeUtils;
 import com.trinet.harness.utils.FeatureFlagConstants;
 import com.trinet.harness.utils.HarnessProvider;
@@ -29,7 +27,7 @@ public class EmployeeService {
 	public List<Employee> getEmployees() {
 		Set<String> deptFilters = new HashSet<>();
 		try {
-			boolean isEmployeeAPIisEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.EMPLOYEE_DISPLAY_API);
+			boolean isEmployeeAPIisEnabled = harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.EMPLOYEE_DISPLAY_API);
 			logger.info("isEmployeeAPIisEnabled: {}", isEmployeeAPIisEnabled);
 
 			if (!isEmployeeAPIisEnabled) {
@@ -37,11 +35,11 @@ public class EmployeeService {
 				throw new RuntimeException(FeatureFlagConstants.API_DISABLED_MESSAGE);
 			}
 
-			boolean isAllDeptEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.ALL_DEPARTMENT_FLAG);
-			boolean isItDepartmentEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.IT_DEPARTMENT_FLAG);
-			boolean isHrDepartment = harnessProvider.getFlagValues(FeatureFlagConstants.HR_DEPARTMENT_FLAG);
+			boolean isAllDeptEnabled = harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG);
+			boolean isItDepartmentEnabled = harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG);
+			boolean isHrDepartment = harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.HR_DEPARTMENT_FLAG);
 			boolean isSalesDepartmentEnabled = harnessProvider
-					.getFlagValues(FeatureFlagConstants.SALES_DEPARTMENT_FLAG);
+					.getFlagValuesFromCache(FeatureFlagConstants.SALES_DEPARTMENT_FLAG);
 
 			logger.info(
 					"isAllDeptEnabled: {}, isItDepartmentEnabled: {}, isHrDepartment: {}, isSalesDepartmentEnabled: {}",

@@ -34,7 +34,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		 
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -50,15 +50,21 @@
 			<artifactId>ff-java-server-sdk</artifactId>
 			<version>1.5.0</version>
 		</dependency>
-			<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
-	<dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.5.13</version> <!-- Replace with the latest version -->
-    </dependency>
-    
-    
-    
+
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>3.0.5</version>
+		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version> <!-- Replace with the latest version -->
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -75,15 +81,15 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			  <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <arguments>
-                        <argument>--spring.profiles.active=dev</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<arguments>
+						<argument>--spring.profiles.active=dev</argument>
+					</arguments>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<repositories>

@@ -1,16 +1,7 @@
 package com.trinet.harness.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trinet.harness.domain.FFRedisDto;
-import com.trinet.harness.repo.CacheDataRepo;
-import com.trinet.harness.service.FeatureFlagsService;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.trinet.harness.CfClientConfiguration;
 import com.trinet.harness.domain.Employee;
 import com.trinet.harness.service.EmployeeService;
 
@@ -30,9 +23,12 @@ import com.trinet.harness.service.EmployeeService;
 public class EmployeeController {
 
 	Logger logger = LoggerFactory.getLogger(EmployeeController.class);
-	
+
 	@Autowired
 	EmployeeService employeeService;
+
+	@Autowired
+	CfClientConfiguration cfClientConfiguration;
 
 	@GetMapping("/employees")
 	public ResponseEntity<List<Employee>> employees() {
@@ -62,15 +58,18 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/employees/workflow")
-	public ResponseEntity<String> addEmployee(@RequestParam("status") String status) {
-		logger.info("GitHub Actions workflow response status " + status);
+	public ResponseEntity<String> getWorkflowStatus(@RequestParam("status") String status) {
+		logger.info("GITHUB ACTIONS WORKFLOW RESPONSE STATUS " + status);
 
-		if (!status.equals("success")) {
-			// call the servcie and update cache
+		try {
+			logger.info("====updating redis from getWorkflowStatus");
+			cfClientConfiguration.getFFValues();
+
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException(e);
 		}
 
 		return ResponseEntity.ok("Triggered");
 	}
-
 
 }
