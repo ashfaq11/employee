@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.trinet.harness.CfClientConfiguration;
 import com.trinet.harness.domain.Employee;
 import com.trinet.harness.service.EmployeeService;
+import com.trinet.harness.service.GitHubActionsService;
 
 @RestController
 public class EmployeeController {
@@ -29,6 +30,10 @@ public class EmployeeController {
 
 	@Autowired
 	CfClientConfiguration cfClientConfiguration;
+	
+	@Autowired
+	GitHubActionsService gitHubActionsService;
+
 
 	@GetMapping("/employees")
 	public ResponseEntity<List<Employee>> employees() {
@@ -71,5 +76,17 @@ public class EmployeeController {
 
 		return ResponseEntity.ok("Triggered");
 	}
+	
+	@GetMapping("/employees/github")
+	public ResponseEntity<String> github() {
+		logger.info("GITHUB ACTIONS CALLED ");
+
+		logger.info("====github triggerred");
+		gitHubActionsService.triggerGitHubActionWorkflow();
+
+		return ResponseEntity.ok("Triggered");
+	}
+	
+		
 
 }
