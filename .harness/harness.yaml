@@ -1,0 +1,43 @@
+pipeline:
+  name: harness
+  identifier: harness
+  projectIdentifier: employee_ci
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github
+        repoName: https://github.com/ashfaq11/employee.git
+        build: <+input>
+  stages:
+    - stage:
+        name: build stage
+        identifier: build_stage
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: RunTests
+                  name: Run JUnit Tests
+                  identifier: Run_JUnit_Tests
+                  spec:
+                    language: Java
+                    buildTool: Maven
+                    args: clean test
+                    runOnlySelectedTests: true
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - "**/*.xml"
+                    enableTestSplitting: false
