@@ -12,7 +12,7 @@ pipeline:
     - type: PR
       source:
         type: GITHUB
-        repo: your-github-repo
+        repo: https://github.com/ashfaq11/employee.git
         events:
           - pull_request
       spec:
