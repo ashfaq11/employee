@@ -1,14 +1,19 @@
-inputSet:
-  name: Build_ashfaq11_employee_1715593598017-pr-trigger-input-set
-  identifier: Build_ashfaq11_employee_1715593598017prtriggerinputset
-  orgIdentifier: default
-  projectIdentifier: Employee
-  pipeline:
-    identifier: Build_ashfaq11_employee_1715593598017
-    properties:
-      ci:
-        codebase:
-          build:
-            type: PR
-            spec:
-              number: <+trigger.prNumber>
+pipeline:
+  name: Build_ashfaq11_employee_1715593598017
+  stages:
+    - name: Test
+      type: CI
+      steps:
+        - name: Run Maven Tests
+          type: SHELL
+          command: |
+            mvn test
+  triggers:
+    - type: PR
+      source:
+        type: GITHUB
+        repo: your-github-repo
+        events:
+          - pull_request
+      spec:
+        prNumber: "<+trigger.prNumber>"
