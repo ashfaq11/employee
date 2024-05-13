@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_ashfaq11_employee_1715593598017-push-trigger-input-set
+  identifier: Build_ashfaq11_employee_1715593598017pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: Employee
+  pipeline:
+    identifier: Build_ashfaq11_employee_1715593598017
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
