@@ -40,3 +40,10 @@ pipeline:
                         paths:
                           - "**/*.xml"
                     enableTestSplitting: false
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: echo success
