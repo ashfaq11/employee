@@ -11,43 +11,24 @@ pipeline:
         repoName: ashfaq11/employee
   stages:
     - stage:
-        identifier: build
         name: build
+        identifier: build
+        description: ""
+        type: CI
         spec:
-          caching:
-            enabled: true
           cloneCodebase: true
-          execution:
-            steps:
-              - step:
-                  identifier: echo
-                  name: echo
-                  spec:
-                    command: echo hello world
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: dockerbuild
-                  name: docker_build
-                  spec:
-                    caching: true
-                    connectorRef: <+input>
-                    repo: hello/world
-                    tags:
-                      - latest
-                  timeout: ""
-                  type: BuildAndPushDockerRegistry
-              - step:
-                  type: Run
-                  name: echo success
-                  identifier: echo_success
-                  spec:
-                    shell: Sh
-                    command: echo success
           platform:
             os: MacOS
             arch: Arm64
           runtime:
             type: Docker
             spec: {}
-        type: CI
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: echo helloworld
