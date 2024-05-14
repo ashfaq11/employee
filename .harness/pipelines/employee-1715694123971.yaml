@@ -23,10 +23,8 @@ pipeline:
                   identifier: echo
                   name: echo
                   spec:
-                    shell: Sh
-                    command: |-
-                      echo running docker task
-                      docker context use colima
+                    shell: Bash
+                    command: docker context use colima
                   timeout: ""
                   type: Run
               - step:
