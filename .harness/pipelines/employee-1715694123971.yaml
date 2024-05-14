@@ -23,7 +23,10 @@ pipeline:
                   identifier: echo
                   name: echo
                   spec:
-                    command: echo hello world
+                    shell: Sh
+                    command: |-
+                      echo running docker task
+                      docker context use colima
                   timeout: ""
                   type: Run
               - step:
@@ -38,9 +41,9 @@ pipeline:
                   timeout: ""
                   type: BuildAndPushDockerRegistry
           platform:
-            arch: Arm64
             os: MacOS
+            arch: Arm64
           runtime:
-            spec: {}
             type: Docker
+            spec: {}
         type: CI
