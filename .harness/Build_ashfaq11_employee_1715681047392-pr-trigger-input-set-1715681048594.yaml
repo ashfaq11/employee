@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_ashfaq11_employee_1715681047392-pr-trigger-input-set
+  identifier: Build_ashfaq11_employee_1715681047392prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: employee_ci
+  pipeline:
+    identifier: Build_ashfaq11_employee_1715681047392
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
