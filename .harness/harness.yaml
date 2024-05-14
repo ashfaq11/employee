@@ -33,7 +33,7 @@ pipeline:
                   spec:
                     language: Java
                     buildTool: Maven
-                    args: clean test
+                    args: test
                     runOnlySelectedTests: true
                     reports:
                       type: JUnit
