@@ -11,32 +11,20 @@ pipeline:
         repoName: ashfaq11/employee
   stages:
     - stage:
-        identifier: build
         name: build
+        identifier: build
+        description: ""
+        type: CI
         spec:
-          caching:
-            enabled: true
           cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
           execution:
             steps:
-              - step:
-                  identifier: echo
-                  name: echo
-                  spec:
-                    command: echo hello world
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: dockerbuild
-                  name: docker_build
-                  spec:
-                    caching: true
-                    connectorRef: <+input>
-                    repo: hello/world
-                    tags:
-                      - latest
-                  timeout: ""
-                  type: BuildAndPushDockerRegistry
               - step:
                   type: RunTests
                   name: RunTests_1
@@ -52,10 +40,3 @@ pipeline:
                         paths:
                           - "**/*.xml"
                     enableTestSplitting: false
-          platform:
-            os: MacOS
-            arch: Arm64
-          runtime:
-            type: Docker
-            spec: {}
-        type: CI
