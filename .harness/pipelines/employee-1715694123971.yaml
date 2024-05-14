@@ -23,8 +23,10 @@ pipeline:
                   identifier: echo
                   name: echo
                   spec:
-                    shell: Bash
-                    command: docker context use colima
+                    shell: Sh
+                    command: |-
+                      ls
+                      echo running CI via harness
                   timeout: ""
                   type: Run
               - step:
