@@ -1,0 +1,35 @@
+pipeline:
+  name: JAVA PIPELINE2
+  identifier: JAVA_PIPELINE2
+  projectIdentifier: employee_ci
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github
+        repoName: https://github.com/ashfaq11/employee.git
+        build: <+input>
+  stages:
+    - stage:
+        name: build
+        identifier: build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: echo test
