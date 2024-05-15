@@ -23,7 +23,8 @@ pipeline:
                   identifier: echo
                   name: echo
                   spec:
-                    command: echo hello world
+                    shell: Sh
+                    command: echo "started build"
                   timeout: ""
                   type: Run
               - step:
@@ -49,9 +50,9 @@ pipeline:
                     shell: Sh
                     command: echo success
           platform:
-            arch: Arm64
             os: MacOS
+            arch: Arm64
           runtime:
-            spec: {}
             type: Docker
+            spec: {}
         type: CI
