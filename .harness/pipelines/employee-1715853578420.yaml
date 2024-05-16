@@ -27,20 +27,31 @@ pipeline:
                   timeout: ""
                   type: Run
               - step:
-                  identifier: dockerbuild
-                  name: docker_build
+                  type: RunTests
+                  name: Junit Tests
+                  identifier: Junit_Tests
                   spec:
-                    caching: true
-                    connectorRef: <+input>
-                    repo: hello/world
-                    tags:
-                      - latest
-                  timeout: ""
-                  type: BuildAndPushDockerRegistry
+                    language: Java
+                    buildTool: Maven
+                    args: clean test
+                    runOnlySelectedTests: true
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - "**/*.xml"
+                    enableTestSplitting: false
+              - step:
+                  type: Run
+                  name: refresh cache
+                  identifier: refresh_cache
+                  spec:
+                    shell: Sh
+                    command: curl -X GET https://employee-production-81b8.up.railway.app/employees/workflow?status=success
           platform:
-            arch: Arm64
-            os: MacOS
+            os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Docker
+            spec: {}
         type: CI
