@@ -59,7 +59,7 @@ featureFlags:
         default:
           onVariation: "true"
           offVariation: "false"
-        state: "on"
+        state: "off"
   - flag:
       name: created_flag_at_yaml
       identifier: created_flag_at_yaml
