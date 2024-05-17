@@ -21,6 +21,11 @@ featureFlags:
           onVariation: "true"
           offVariation: "false"
         state: "off"
+      - identifier: prod
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
   - flag:
       name: employee_list
       identifier: employee_list
@@ -42,6 +47,11 @@ featureFlags:
           onVariation: "true"
           offVariation: "false"
         state: "off"
+      - identifier: prod
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
   - flag:
       name: test_failure
       identifier: test_failure
@@ -59,6 +69,11 @@ featureFlags:
           value: "false"
       environments:
       - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: prod
         default:
           onVariation: "true"
           offVariation: "false"
