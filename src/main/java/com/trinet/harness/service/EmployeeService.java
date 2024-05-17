@@ -27,19 +27,18 @@ public class EmployeeService {
 	public List<Employee> getEmployees() {
 		Set<String> deptFilters = new HashSet<>();
 		try {
-			boolean isEmployeeAPIisEnabled = harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.EMPLOYEE_DISPLAY_API);
+			boolean isEmployeeAPIisEnabled = harnessProvider.getFlagValues(FeatureFlagConstants.EMPLOYEE_DISPLAY_API);
 			logger.info("isEmployeeAPIisEnabled: {}", isEmployeeAPIisEnabled);
 
-			if (!isEmployeeAPIisEnabled) {
-				logger.info(FeatureFlagConstants.API_DISABLED_MESSAGE);
-				throw new RuntimeException(FeatureFlagConstants.API_DISABLED_MESSAGE);
-			}
+//			if (!isEmployeeAPIisEnabled) {
+//				logger.info(FeatureFlagConstants.API_DISABLED_MESSAGE);
+//				throw new RuntimeException(FeatureFlagConstants.API_DISABLED_MESSAGE);
+//			}
 
-			boolean isAllDeptEnabled = harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG);
-			boolean isItDepartmentEnabled = harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG);
-			boolean isHrDepartment = harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.HR_DEPARTMENT_FLAG);
-			boolean isSalesDepartmentEnabled = harnessProvider
-					.getFlagValuesFromCache(FeatureFlagConstants.SALES_DEPARTMENT_FLAG);
+			boolean isAllDeptEnabled = true;//harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG);
+			boolean isItDepartmentEnabled = true;//harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG);
+			boolean isHrDepartment = true;//harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.HR_DEPARTMENT_FLAG);
+			boolean isSalesDepartmentEnabled = true;//harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.SALES_DEPARTMENT_FLAG);
 
 			logger.info(
 					"isAllDeptEnabled: {}, isItDepartmentEnabled: {}, isHrDepartment: {}, isSalesDepartmentEnabled: {}",

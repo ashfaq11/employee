@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.trinet.harness.CfClientConfiguration;
 import com.trinet.harness.domain.FFRedisDto;
 import com.trinet.harness.service.FeatureFlagsService;
 
@@ -24,11 +25,13 @@ public class FeatureFlagController {
     
     @Autowired
     FeatureFlagsService featureFlagsService;
+    @Autowired
+    CfClientConfiguration client;
 
     @GetMapping("/fetchAll")
     public ResponseEntity<List<FFRedisDto>> featureFlag() throws JsonProcessingException {
 
-        return ResponseEntity.ok(featureFlagsService.getAllFlags());
+        return ResponseEntity.ok(client.getAllFFValuesFromHrnSdk());
     }
 
     @GetMapping("/findById")

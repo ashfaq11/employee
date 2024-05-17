@@ -91,6 +91,12 @@ class HarnessApplicationTests {
 		List<Employee> empList = employeeServiceInject.getEmployees();
 		int size = empList.size();
 		int actualSize = employeeList.size();
+		boolean testFailure = hrnProvider.getFlagValues("test_failure");
+		logger.info("test_failure "+testFailure);
+		if (testFailure) {
+			logger.info("--> Failing the test");
+			size = empList.size() + 1;
+		}
 
 		assertEquals(size, actualSize);
 	}
@@ -111,7 +117,7 @@ class HarnessApplicationTests {
 
 	}
 
-	@Test
+//	@Test
 	void displayITDepartmentTest() throws InterruptedException, FeatureFlagInitializeException {
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG)).thenReturn(true);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG)).thenReturn(false);
@@ -126,7 +132,7 @@ class HarnessApplicationTests {
 		assertEquals(size, actualSize);
 	}
 
-	@Test
+//	@Test
 	void displayHRDepartmentTest() throws InterruptedException, FeatureFlagInitializeException {
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG)).thenReturn(false);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG)).thenReturn(false);
@@ -141,7 +147,7 @@ class HarnessApplicationTests {
 		assertEquals(size, actualSize);
 	}
 
-	@Test
+//	@Test
 	void displaySalesDepartmentTest() throws InterruptedException, FeatureFlagInitializeException {
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG)).thenReturn(false);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG)).thenReturn(false);

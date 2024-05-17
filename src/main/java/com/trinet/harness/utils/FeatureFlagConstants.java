@@ -4,7 +4,8 @@ public class FeatureFlagConstants {
 
 	private FeatureFlagConstants() {}
 	
-	public static final String EMPLOYEE_DISPLAY_API = "employee_display_api";
+//	public static final String EMPLOYEE_DISPLAY_API = "employee_display_api";
+	public static final String EMPLOYEE_DISPLAY_API = "employee_list";
 	public static final String ALL_DEPARTMENT_FLAG = "allDepartment";
 	public static final String HR_DEPARTMENT_FLAG = "hrDepartment";
 	public static final String IT_DEPARTMENT_FLAG = "itDepartment";
@@ -14,7 +15,7 @@ public class FeatureFlagConstants {
 	public static final String IT_DEPARTMENT = "IT";
 	public static final String HR_DEPARTMENT = "HR";
 
-	public static final String API_KEY = "f539130f-61d8-411e-b6a1-5d5bf9e8b188";
+	public static final String API_KEY = "66b49dce-8d9b-41b9-a233-46082a5a560f";
 	public static final String IDENTIFIER = "employee_dev";
 	public static final String NAME = "development";
 
@@ -26,11 +27,11 @@ public class FeatureFlagConstants {
 	public static final String LOCATION_VALUE = "us";
 
 	public static final String API_DISABLED_MESSAGE = "API IS DISABLED";
-	public static final String ACCOUNT_IDENTIFIER = "b-BNO3rXTjWRK9JsIxgnTQ";
+	public static final String ACCOUNT_IDENTIFIER = "66FF4hTBTp-IQ829KX5SXA";//"b-BNO3rXTjWRK9JsIxgnTQ";
 	public static final String ORG_IDENTIFIER = "default";
-	public static final String PROJECT_IDENTIFIER = "default_project";
+	public static final String PROJECT_IDENTIFIER = "POC";//"default_project";
 	public static final String ENVIRONMENT_IDENTIFIER = "dev";
-	public static final String DEV_X_API_KEY = "pat.b-BNO3rXTjWRK9JsIxgnTQ.663339960315c638850f6b20.PVJV0Sozuly6YMO3VCWU";
+	public static final String DEV_X_API_KEY = "pat.66FF4hTBTp-IQ829KX5SXA.6647481e6e05ee28ef3149a2.9g6Ovnye94qhhnnSClRY";//"pat.b-BNO3rXTjWRK9JsIxgnTQ.663339960315c638850f6b20.PVJV0Sozuly6YMO3VCWU";
 
 
 	
