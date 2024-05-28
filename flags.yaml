@@ -61,7 +61,7 @@ featureFlags:
       - identifier: dev
         default:
           onVariation: "true"
-          offVariation: "true"
+          offVariation: "false"
         state: "on"
   - flag:
       name: test_failure
