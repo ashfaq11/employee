@@ -60,7 +60,7 @@ featureFlags:
       environments:
       - identifier: dev
         default:
-          onVariation: "false"
+          onVariation: "true"
           offVariation: "true"
         state: "on"
   - flag:
