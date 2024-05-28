@@ -78,6 +78,10 @@ featureFlags:
           onVariation: "true"
           offVariation: "false"
         state: "off"
+        targetRules:
+        - targets:
+          - identifier: Naresh
+          variation: "true"
   - flag:
       name: My_Test_Flag
       identifier: My_Test_Flag
@@ -104,6 +108,10 @@ featureFlags:
           onVariation: "true"
           offVariation: "false"
         state: "off"
+        targetRules:
+        - targets:
+          - identifier: Naresh
+          variation: "true"
   - flag:
       name: test
       identifier: test
