@@ -60,8 +60,8 @@ featureFlags:
       environments:
       - identifier: dev
         default:
-          onVariation: "true"
-          offVariation: "false"
+          onVariation: "false"
+          offVariation: "true"
         state: "off"
   - flag:
       name: test_failure
