@@ -78,6 +78,10 @@ featureFlags:
           onVariation: "true"
           offVariation: "false"
         state: "on"
+        targetRules:
+        - targets:
+          - identifier: Naresh
+          variation: "true"
   - flag:
       name: My_Test_Flag
       identifier: My_Test_Flag
@@ -133,6 +137,6 @@ featureFlags:
         default:
           onVariation: "true"
           offVariation: "false"
-        state: "on"
+        state: "off"
   projectIdentifier: POC
   orgIdentifier: default
