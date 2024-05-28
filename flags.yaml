@@ -53,6 +53,32 @@ featureFlags:
           offVariation: "false"
         state: "on"
   - flag:
+      name: list_view
+      identifier: list_view
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+  - flag:
       name: My_Test_Flag
       identifier: My_Test_Flag
       description: ""
