@@ -16,6 +16,11 @@ featureFlags:
         - identifier: "false"
           value: "false"
       environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
       - identifier: dev
         default:
           onVariation: "true"
@@ -37,6 +42,11 @@ featureFlags:
         - identifier: "false"
           value: "false"
       environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
       - identifier: dev
         default:
           onVariation: "true"
@@ -58,6 +68,11 @@ featureFlags:
         - identifier: "false"
           value: "false"
       environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
       - identifier: dev
         default:
           onVariation: "true"
@@ -79,6 +94,11 @@ featureFlags:
         - identifier: "false"
           value: "false"
       environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
       - identifier: dev
         default:
           onVariation: "true"
@@ -100,6 +120,11 @@ featureFlags:
         - identifier: "false"
           value: "false"
       environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
       - identifier: dev
         default:
           onVariation: "true"
