@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariables;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.slf4j.Logger;
@@ -66,7 +68,9 @@ class HarnessApplicationTests {
 	}
 
 	@Test
+	@EnabledIfEnvironmentVariable(named = "crud_operations", matches = "1")
 	void testAddEmployee() {
+		logger.info("flag1 test case executed");
 		int beforeSize = EmployeeUtils.employeeList.size();
 		employeeService.save(newEmployee);
 		int afterSize = EmployeeUtils.employeeList.size();
@@ -74,6 +78,7 @@ class HarnessApplicationTests {
 	}
 
 	@Test
+	@EnabledIfEnvironmentVariable(named = "crud_operations", matches = "1")
 	void deleteEmployee() {
 		int beforeSize = EmployeeUtils.employeeList.size();
 		employeeService.delete(1);
@@ -82,6 +87,7 @@ class HarnessApplicationTests {
 	}
 
 	@Test
+	@EnabledIfEnvironmentVariable(named = "employee_list", matches = "1")
 	void displayEmployee() throws InterruptedException, FeatureFlagInitializeException {
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG)).thenReturn(true);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG)).thenReturn(true);
@@ -102,6 +108,7 @@ class HarnessApplicationTests {
 	}
 
 	@Test
+	@EnabledIfEnvironmentVariable(named = "employee_list", matches = "1")
 	void displayEmployeeAPIEnabledFlagTest() throws InterruptedException, FeatureFlagInitializeException {
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG)).thenReturn(true);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG)).thenReturn(false);
