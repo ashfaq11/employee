@@ -113,6 +113,32 @@ featureFlags:
           - identifier: Naresh
           variation: "true"
   - flag:
+      name: newflag2
+      identifier: newflag2
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+  - flag:
       name: test_failure
       identifier: test_failure
       description: ""
