@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
-import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariables;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.slf4j.Logger;
@@ -18,17 +17,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.trinet.harness.domain.Employee;
-import com.trinet.harness.domain.FFRedisDto;
 import com.trinet.harness.service.EmployeeService;
-import com.trinet.harness.service.FeatureFlagsService;
 import com.trinet.harness.utils.EmployeeUtils;
 import com.trinet.harness.utils.FeatureFlagConstants;
 import com.trinet.harness.utils.HarnessProvider;
 
 import io.harness.cf.client.api.FeatureFlagInitializeException;
-import io.micrometer.common.util.StringUtils;
 
 @SpringBootTest
 class HarnessApplicationTests {
@@ -70,7 +65,7 @@ class HarnessApplicationTests {
 	@Test
 	@EnabledIfEnvironmentVariable(named = "crud_operations", matches = "1")
 	void testAddEmployee() {
-		logger.info("flag1 test case executed");
+		logger.info("running test for crud_operations");
 		int beforeSize = EmployeeUtils.employeeList.size();
 		employeeService.save(newEmployee);
 		int afterSize = EmployeeUtils.employeeList.size();
@@ -80,6 +75,7 @@ class HarnessApplicationTests {
 	@Test
 	@EnabledIfEnvironmentVariable(named = "crud_operations", matches = "1")
 	void deleteEmployee() {
+		logger.info("running test for crud_operations");
 		int beforeSize = EmployeeUtils.employeeList.size();
 		employeeService.delete(1);
 		int afterSize = EmployeeUtils.employeeList.size();
@@ -89,6 +85,7 @@ class HarnessApplicationTests {
 	@Test
 	@EnabledIfEnvironmentVariable(named = "employee_list", matches = "1")
 	void displayEmployee() throws InterruptedException, FeatureFlagInitializeException {
+		logger.info("running test for employee_list");
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG)).thenReturn(true);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG)).thenReturn(true);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.HR_DEPARTMENT_FLAG)).thenReturn(false);
@@ -110,6 +107,7 @@ class HarnessApplicationTests {
 	@Test
 	@EnabledIfEnvironmentVariable(named = "employee_list", matches = "1")
 	void displayEmployeeAPIEnabledFlagTest() throws InterruptedException, FeatureFlagInitializeException {
+		logger.info("running test for employee_list");
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG)).thenReturn(true);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG)).thenReturn(false);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.HR_DEPARTMENT_FLAG)).thenReturn(false);
@@ -124,8 +122,10 @@ class HarnessApplicationTests {
 
 	}
 
-//	@Test
+	@Test
+	@EnabledIfEnvironmentVariable(named = "test_failure", matches = "1")
 	void displayITDepartmentTest() throws InterruptedException, FeatureFlagInitializeException {
+		logger.info("running test for test_failure");
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.IT_DEPARTMENT_FLAG)).thenReturn(true);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.ALL_DEPARTMENT_FLAG)).thenReturn(false);
 		when(harnessProvider.getFlagValuesFromCache(FeatureFlagConstants.HR_DEPARTMENT_FLAG)).thenReturn(false);
