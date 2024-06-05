@@ -25,7 +25,7 @@ featureFlags:
         default:
           onVariation: "true"
           offVariation: "false"
-        state: "off"
+        state: "on"
   - flag:
       name: employee_list
       identifier: employee_list
@@ -51,7 +51,33 @@ featureFlags:
         default:
           onVariation: "true"
           offVariation: "false"
-        state: "on"
+        state: "off"
+  - flag:
+      name: ff
+      identifier: ff
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
   - flag:
       name: list_view
       identifier: list_view
@@ -112,6 +138,32 @@ featureFlags:
         - targets:
           - identifier: Naresh
           variation: "true"
+  - flag:
+      name: newflag2
+      identifier: newflag2
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "on"
   - flag:
       name: test_failure
       identifier: test_failure
