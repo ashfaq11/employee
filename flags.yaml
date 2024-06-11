@@ -83,6 +83,34 @@ featureFlags:
           - identifier: Naresh
           variation: "true"
   - flag:
+      name: multivariance
+      identifier: multivariance
+      description: ""
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: var1
+          offVariation: var2
+        variations:
+        - identifier: var1
+          value: var1
+        - identifier: var2
+          value: var2
+        - identifier: var3
+          value: var3
+      environments:
+      - identifier: test
+        default:
+          onVariation: var1
+          offVariation: var2
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: var1
+          offVariation: var2
+        state: "off"
+  - flag:
       name: My_Test_Flag
       identifier: My_Test_Flag
       description: ""
