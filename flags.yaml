@@ -110,6 +110,23 @@ featureFlags:
           onVariation: var1
           offVariation: var2
         state: "off"
+        rules:
+        - priority: 0
+          serve:
+            distribution:
+              bucketBy: identifier
+              variations:
+              - weight: 30
+                variation: var1
+              - weight: 30
+                variation: var2
+              - weight: 40
+                variation: var3
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - group
   - flag:
       name: My_Test_Flag
       identifier: My_Test_Flag
