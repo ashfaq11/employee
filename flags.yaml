@@ -127,6 +127,10 @@ featureFlags:
             op: segmentMatch
             values:
             - group
+        targetRules:
+        - targets:
+          - identifier: javasdk
+          variation: var1
   - flag:
       name: My_Test_Flag
       identifier: My_Test_Flag
