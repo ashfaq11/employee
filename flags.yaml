@@ -120,15 +120,15 @@ featureFlags:
             distribution:
               bucketBy: identifier
               variations:
-              - weight: 10
+              - weight: 20
                 variation: delete
-              - weight: 10
+              - weight: 20
                 variation: all
-              - weight: 10
+              - weight: 20
                 variation: var1
-              - weight: 30
+              - weight: 20
                 variation: var2
-              - weight: 40
+              - weight: 20
                 variation: var3
           clauses:
           - attribute: ""
