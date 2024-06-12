@@ -90,15 +90,19 @@ featureFlags:
       spec:
         type: string
         default:
-          onVariation: var1
+          onVariation: var2
           offVariation: var2
         variations:
         - identifier: var1
-          value: var1
+          value: c
         - identifier: var2
-          value: var2
+          value: r
         - identifier: var3
-          value: var3
+          value: u
+        - identifier: delete
+          value: d
+        - identifier: all
+          value: a
       environments:
       - identifier: test
         default:
