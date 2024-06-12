@@ -113,7 +113,7 @@ featureFlags:
         default:
           onVariation: var2
           offVariation: var2
-        state: "on"
+        state: "off"
         rules:
         - priority: 0
           serve:
