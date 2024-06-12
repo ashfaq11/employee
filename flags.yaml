@@ -135,6 +135,14 @@ featureFlags:
             op: segmentMatch
             values:
             - group
+        - priority: 1
+          serve:
+            serveVariation: all
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - ADMIN_GROUP
   - flag:
       name: My_Test_Flag
       identifier: My_Test_Flag
