@@ -111,7 +111,7 @@ featureFlags:
         state: "off"
       - identifier: dev
         default:
-          onVariation: var1
+          onVariation: var2
           offVariation: var2
         state: "on"
         rules:
