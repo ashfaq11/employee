@@ -83,7 +83,7 @@ featureFlags:
           - identifier: Naresh
           variation: "true"
   - flag:
-      name: multivariance
+      name: multivariate
       identifier: multivariance
       description: ""
       permanent: false
