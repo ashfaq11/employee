@@ -115,26 +115,6 @@ featureFlags:
           offVariation: var2
         state: "on"
         rules:
-        - priority: 0
-          serve:
-            distribution:
-              bucketBy: identifier
-              variations:
-              - weight: 20
-                variation: delete
-              - weight: 20
-                variation: all
-              - weight: 20
-                variation: var1
-              - weight: 20
-                variation: var2
-              - weight: 20
-                variation: var3
-          clauses:
-          - attribute: ""
-            op: segmentMatch
-            values:
-            - group
         - priority: 1
           serve:
             serveVariation: all
