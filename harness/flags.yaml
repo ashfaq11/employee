@@ -1,0 +1,419 @@
+featureFlags:
+  flags:
+  - flag:
+      name: crud_operations
+      identifier: crud_operations
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+  - flag:
+      name: employee_list
+      identifier: employee_list
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+  - flag:
+      name: list_view
+      identifier: list_view
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: Naresh
+          variation: "true"
+  - flag:
+      name: multiDouble
+      identifier: multiDouble
+      description: ""
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: variant1
+          offVariation: variant2
+        variations:
+        - identifier: variant1
+          value: "1.1"
+        - identifier: variant2
+          value: "2.2"
+      environments:
+      - identifier: test
+        default:
+          onVariation: variant1
+          offVariation: variant2
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: variant1
+          offVariation: variant2
+        state: "off"
+  - flag:
+      name: multiInteger
+      identifier: multiInteger
+      description: ""
+      permanent: false
+      spec:
+        type: int
+        default:
+          onVariation: variant1
+          offVariation: variant2
+        variations:
+        - identifier: variant1
+          value: "1"
+        - identifier: variant2
+          value: "2"
+      environments:
+      - identifier: test
+        default:
+          onVariation: variant1
+          offVariation: variant2
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: variant1
+          offVariation: variant2
+        state: "on"
+  - flag:
+      name: multiString
+      identifier: multiString
+      description: ""
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: type1
+          offVariation: type2
+        variations:
+        - identifier: type1
+          value: a
+        - identifier: type2
+          value: b
+      environments:
+      - identifier: test
+        default:
+          onVariation: type1
+          offVariation: type2
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: type1
+          offVariation: type2
+        state: "on"
+  - flag:
+      name: multiTest
+      identifier: multiTest
+      description: ""
+      permanent: false
+      spec:
+        type: int
+        default:
+          onVariation: a
+          offVariation: b
+        variations:
+        - identifier: a
+          value: "1.1"
+        - identifier: b
+          value: "2.1"
+        - identifier: c
+          value: "3.1"
+      environments:
+      - identifier: test
+        default:
+          onVariation: a
+          offVariation: b
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: a
+          offVariation: b
+        state: "on"
+  - flag:
+      name: multivariate
+      identifier: multivariance
+      description: ""
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: var2
+          offVariation: var2
+        variations:
+        - identifier: var1
+          value: create
+        - identifier: var2
+          value: read
+        - identifier: var3
+          value: update
+        - identifier: delete
+          value: delete
+        - identifier: all
+          value: all
+      environments:
+      - identifier: test
+        default:
+          onVariation: var1
+          offVariation: var2
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: var2
+          offVariation: var2
+        state: "on"
+        rules:
+        - priority: 1
+          serve:
+            serveVariation: all
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - ADMIN_GROUP
+        - priority: 2
+          serve:
+            serveVariation: var2
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - USER_GROUP
+        - priority: 3
+          serve:
+            distribution:
+              bucketBy: identifier
+              variations:
+              - weight: 20
+                variation: delete
+              - weight: 20
+                variation: all
+              - weight: 20
+                variation: var1
+              - weight: 20
+                variation: var2
+              - weight: 20
+                variation: var3
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - MULTIVARIANCE_GROUP
+  - flag:
+      name: My_Test_Flag
+      identifier: My_Test_Flag
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: Naresh
+          variation: "true"
+  - flag:
+      name: percentage_rollout
+      identifier: percentage_rollout
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        rules:
+        - priority: 0
+          serve:
+            distribution:
+              bucketBy: identifier
+              variations:
+              - weight: 20
+                variation: "true"
+              - weight: 80
+                variation: "false"
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - PercentageRollout
+  - flag:
+      name: test_failure
+      identifier: test_failure
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+  - flag:
+      name: testFlag
+      identifier: testFlag
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        rules:
+        - priority: 0
+          serve:
+            serveVariation: "true"
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - testFlagGroup
+  - flag:
+      name: ui_style
+      identifier: ui_style
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: dev
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+  projectIdentifier: POC
+  orgIdentifier: default
