@@ -107,7 +107,7 @@ featureFlags:
         default:
           onVariation: variant1
           offVariation: variant2
-        state: "off"
+        state: "on"
   - flag:
       name: multiInteger
       identifier: multiInteger
